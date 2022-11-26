@@ -20,7 +20,7 @@ return await post({"query":"\n    query SELECT_ENTRYSTORY(\n    $pageParam: Page
 const profileId = location.href.split('/')[4];
 if(!profileId) {alert('[오류] 자신의 마이페이지에서 실행해주세요. ')}
 else {
-    editStory.get(profileId, prompt('몇 개의 계시물을 지우시겠습니까?'))
+    editStory.get(profileId, prompt('몇 개의 계시물을 지우시겠습니까?')-1)
     .then(r=>r.json())
     .then(r=>r.data.discussList.list.forEach(e=>{editStory.remove(e.id);}))
     .then(alert('성공적으로 삭제되었습니다.'))
