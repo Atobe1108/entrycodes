@@ -18,5 +18,10 @@ return await post({"query":"\n    query SELECT_ENTRYSTORY(\n    $pageParam: Page
 }
 };
 const profileId = location.href.split('/')[4];
-if(profileId ?? 1) {alert('[오류] 자신의 마이페이지에서 실행해주세요. ')};
-editStory.get("627f765c1d9e7602d1c5f82f", 8).then(r=>r.json()).then(r=>r.data.discussList.list.foreach(e=>{editStory.remove(e.id);}));
+if(!profileId) {alert('[오류] 자신의 마이페이지에서 실행해주세요. ')}
+else {
+    editStory.get(profileId, prompt('몇 개의 계시물을 지우시겠습니까?'))
+    .then(r=>r.json())
+    .then(r=>r.data.discussList.list.forEach(e=>{editStory.remove(e.id);}))
+    .then(alert('성공적으로 삭제되었습니다.'))
+}
